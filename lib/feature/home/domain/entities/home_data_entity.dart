@@ -1,3 +1,4 @@
+import 'package:floor/floor.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 class HomeDataEntity {
@@ -12,8 +13,10 @@ class HomeDataEntity {
   });
 }
 
+@entity
 @JsonSerializable()
 class HotSaleEntity {
+  @primaryKey
   final int id;
   @JsonKey(name: 'is_new')
   final bool? isNew;
@@ -34,8 +37,10 @@ class HotSaleEntity {
   });
 }
 
+@entity
 @JsonSerializable()
 class BestSellerEntity {
+  @primaryKey
   final int id;
   @JsonKey(name: 'is_favorites')
   final bool isFavorites;

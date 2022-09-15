@@ -23,17 +23,17 @@ class HomeDataRepositoryImpl extends HomeDataRepository {
     if (await networkInfo.isConnected) {
       try {
         final data = await homeRemoteDataSource.getHomeData();
-        homeLocalDataSource.homeDataToCache(data);
+        homeLocalDataSource.homeDataToStorage(data);
         return Right(data);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
       try {
-        final data = await homeLocalDataSource.getHomeDataFromCache();
+        final data = await homeLocalDataSource.getHomeDataFromStorage();
         return Right(data);
-      } on CacheException {
-        return Left(CacheFailure());
+      } on StorageException {
+        return Left(StorageFailure());
       }
     }
   }

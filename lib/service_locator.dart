@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_application_1/core/platform/network_info.dart';
+import 'package:flutter_application_1/core/api/api_client.dart';
 import 'package:flutter_application_1/feature/cart/data/datasources/cart_local_datasource.dart';
 import 'package:flutter_application_1/feature/cart/data/datasources/cart_remote_datasource.dart';
 import 'package:flutter_application_1/feature/cart/data/repositories/cart_repository_impl.dart';
@@ -18,14 +20,17 @@ import 'package:flutter_application_1/feature/home/domain/repositories/home_data
 import 'package:flutter_application_1/feature/home/domain/usecases/get_home_data.dart';
 import 'package:flutter_application_1/feature/home/presentation/bloc/home_bloc.dart';
 import 'package:get_it/get_it.dart';
-
-import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  sl.registerLazySingleton(() => ApiClient(sl()));
+
+  //dio retrofit
+  sl.registerLazySingleton<Dio>(() => Dio());
+
   // BLoC
   sl.registerFactory(() => HomeBloc(sl()));
   sl.registerFactory(() => DetailsBloc(sl()));
@@ -57,15 +62,15 @@ Future<void> init() async {
           ));
 
   sl.registerLazySingleton<HomeRemoteDataSource>(
-    () => HomeRemoteDataSourceImpl(client: http.Client()),
+    () => HomeRemoteDataSourceImpl(client: sl()),
   );
 
   sl.registerLazySingleton<DetailsRemoteDataSource>(
-    () => DetailsRemoteDataSourceImpl(client: http.Client()),
+    () => DetailsRemoteDataSourceImpl(client: sl()),
   );
 
   sl.registerLazySingleton<CartRemoteDataSource>(
-    () => CartRemoteDataSourceImpl(client: http.Client()),
+    () => CartRemoteDataSourceImpl(client: sl()),
   );
 
   sl.registerLazySingleton<HomeLocalDataSource>(
@@ -86,6 +91,5 @@ Future<void> init() async {
   // External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
-  sl.registerLazySingleton(() => http.Client);
   sl.registerLazySingleton(() => InternetConnectionChecker());
 }

@@ -4,8 +4,8 @@ import 'package:flutter_application_1/feature/details/data/models/details_data_m
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class DetailsLocalDataSource {
-  Future<DetailsDataModel> getDetailsDataFromCache();
-  Future<void> detailsDataToCache(DetailsDataModel data);
+  Future<DetailsDataModel> getDetailsDataFromStorage();
+  Future<void> detailsDataToStorage(DetailsDataModel data);
 }
 
 class DetailsLocalDataSourceImpl implements DetailsLocalDataSource {
@@ -14,19 +14,19 @@ class DetailsLocalDataSourceImpl implements DetailsLocalDataSource {
   DetailsLocalDataSourceImpl(this.sharedPreferences);
 
   @override
-  Future<DetailsDataModel> getDetailsDataFromCache() {
+  Future<DetailsDataModel> getDetailsDataFromStorage() {
     final jsonDetailsData = sharedPreferences.getString('CACHED_DETAILS_DATA');
 
     if (jsonDetailsData != null && jsonDetailsData.isNotEmpty) {
       return Future.value(
           DetailsDataModel.fromJson(json.decode(jsonDetailsData)));
     } else {
-      throw CacheException();
+      throw StorageException();
     }
   }
 
   @override
-  Future<void> detailsDataToCache(DetailsDataModel data) {
+  Future<void> detailsDataToStorage(DetailsDataModel data) {
     final String jsonDetailsData = json.encode(data.toJson());
 
     sharedPreferences.setString('CACHED_DETAILS_DATA', jsonDetailsData);

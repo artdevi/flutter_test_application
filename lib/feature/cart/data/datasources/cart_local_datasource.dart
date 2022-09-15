@@ -5,8 +5,8 @@ import 'package:flutter_application_1/feature/cart/data/models/cart_data_model.d
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class CartLocalDataSource {
-  Future<CartDataModel> getCartDataFromCache();
-  Future<void> cartDataToCache(CartDataModel data);
+  Future<CartDataModel> getCartDataFromStorage();
+  Future<void> cartDataToStorage(CartDataModel data);
 }
 
 class CartLocalDataSourceImpl implements CartLocalDataSource {
@@ -15,18 +15,18 @@ class CartLocalDataSourceImpl implements CartLocalDataSource {
   CartLocalDataSourceImpl(this.sharedPreferences);
 
   @override
-  Future<CartDataModel> getCartDataFromCache() {
+  Future<CartDataModel> getCartDataFromStorage() {
     final jsonCartData = sharedPreferences.getString('CACHED_CART_DATA');
 
     if (jsonCartData != null && jsonCartData.isNotEmpty) {
       return Future.value(CartDataModel.fromJson(json.decode(jsonCartData)));
     } else {
-      throw CacheException();
+      throw StorageException();
     }
   }
 
   @override
-  Future<void> cartDataToCache(CartDataModel data) {
+  Future<void> cartDataToStorage(CartDataModel data) {
     final String jsonCartData = json.encode(data.toJson());
 
     sharedPreferences.setString('CACHED_CART_DATA', jsonCartData);

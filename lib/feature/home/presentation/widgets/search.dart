@@ -10,35 +10,35 @@ class Search extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 32, right: 37),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
-            height: 34,
-            width: 300,
-            child: TextField(
-              style: const TextStyle(
-                fontSize: 12,
-              ),
-              maxLines: 1,
-              textAlignVertical: TextAlignVertical.bottom,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: 'Search',
-                hintStyle: TextStyle(
-                  color: AppColors.inputHintText.withOpacity(0.5),
+          Expanded(
+            child: SizedBox(
+              height: 34,
+              child: TextField(
+                style: const TextStyle(
                   fontSize: 12,
                 ),
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.only(left: 24, right: 18, top: 9, bottom: 9),
-                  child: SvgPicture.asset(
-                    'assets/icons/search/search.svg',
-                    color: AppColors.primaryOrange,
+                maxLines: 1,
+                textAlignVertical: TextAlignVertical.bottom,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Search',
+                  hintStyle: TextStyle(
+                    color: AppColors.inputHintText.withOpacity(0.5),
+                    fontSize: 12,
                   ),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius:  BorderRadius.circular(15),
-                  borderSide: BorderSide.none
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 24, right: 18, top: 9, bottom: 9),
+                    child: SvgPicture.asset(
+                      'assets/icons/search/search.svg',
+                      color: AppColors.primaryOrange,
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide.none),
                 ),
               ),
             ),
@@ -46,6 +46,7 @@ class Search extends StatelessWidget {
           Container(
             width: 34,
             height: 34,
+            margin: const EdgeInsets.only(left: 15),
             padding: const EdgeInsets.all(9),
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
