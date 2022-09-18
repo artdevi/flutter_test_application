@@ -23,17 +23,17 @@ class DetailsDataRepositoryImpl extends DetailsDataRepository {
     if (await networkInfo.isConnected) {
       try {
         final data = await detailsRemoteDataSource.getDetailsData();
-        detailsLocalDataSource.detailsDataToCache(data);
+        detailsLocalDataSource.detailsDataToStorage(data);
         return Right(data);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
       try {
-        final data = await detailsLocalDataSource.getDetailsDataFromCache();
+        final data = await detailsLocalDataSource.getDetailsDataFromStorage();
         return Right(data);
-      } on CacheException {
-        return Left(CacheFailure());
+      } on StorageException {
+        return Left(StorageFailure());
       }
     }
   }

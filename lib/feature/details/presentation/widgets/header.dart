@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/app_colors.dart';
+import 'package:flutter_application_1/config/utils/constants.dart';
 import 'package:flutter_application_1/feature/cart/presentation/pages/cart.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localications.dart';
 
 class DetailsHeader extends StatelessWidget {
   const DetailsHeader({Key? key}) : super(key: key);
@@ -34,9 +36,9 @@ class DetailsHeader extends StatelessWidget {
           ),
 
           // Title
-          const Text(
-            'Product Details',
-            style: TextStyle(
+          Text(
+            AppLocalizations.of(context)!.productDetails,
+            style: const TextStyle(
               color: Color(0xFF010035),
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -54,7 +56,7 @@ class DetailsHeader extends StatelessWidget {
               ),
               child: Center(
                 child: SvgPicture.asset(
-                  'assets/icons/bag.svg',
+                  bagIconAsset,
                   color: Colors.white,
                 ),
               ),

@@ -23,17 +23,17 @@ class CartDataRepositoryImpl extends CartDataRepository {
     if (await networkInfo.isConnected) {
       try {
         final data = await cartRemoteDataSource.getCartData();
-        cartLocalDataSource.cartDataToCache(data);
+        cartLocalDataSource.cartDataToStorage(data);
         return Right(data);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
       try {
-        final data = await cartLocalDataSource.getCartDataFromCache();
+        final data = await cartLocalDataSource.getCartDataFromStorage();
         return Right(data);
-      } on CacheException {
-        return Left(CacheFailure());
+      } on StorageException {
+        return Left(StorageFailure());
       }
     }
   }

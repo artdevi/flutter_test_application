@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/app_colors.dart';
+import 'package:flutter_application_1/config/utils/constants.dart';
 import 'package:flutter_application_1/feature/cart/presentation/pages/cart.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localications.dart';
 
 class BottomBar extends StatelessWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -25,8 +27,8 @@ class BottomBar extends StatelessWidget {
           ),
           GestureDetector(
             child: Row(
-              children: const [
-                Text(
+              children: [
+                const Text(
                   '●',
                   style: TextStyle(
                     color: Colors.white,
@@ -34,10 +36,10 @@ class BottomBar extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(width: 7),
+                const SizedBox(width: 7),
                 Text(
-                  'Explorer',
-                  style: TextStyle(
+                  AppLocalizations.of(context)!.explorer,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
@@ -49,7 +51,7 @@ class BottomBar extends StatelessWidget {
           ),
           GestureDetector(
             child: SvgPicture.asset(
-              'assets/icons/bag.svg',
+              bagIconAsset,
               color: Colors.white,
             ),
             onTap: () {
@@ -63,14 +65,14 @@ class BottomBar extends StatelessWidget {
           ),
           GestureDetector(
             child: SvgPicture.asset(
-              'assets/icons/heart.svg',
+              heartIconAsset,
               color: Colors.white,
             ),
             onTap: () {},
           ),
           GestureDetector(
             child: SvgPicture.asset(
-              'assets/icons/person.svg',
+              profileIconAsset,
               color: Colors.white,
             ),
             onTap: () {},

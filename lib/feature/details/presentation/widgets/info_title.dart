@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/app_colors.dart';
+import 'package:flutter_application_1/config/utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class InfoTitle extends StatelessWidget {
   final String title;
   final bool isFavorites;
   final double rating;
-  const InfoTitle({required this.title, required this.isFavorites, required this.rating, Key? key}) : super(key: key);
+  const InfoTitle(
+      {required this.title,
+      required this.isFavorites,
+      required this.rating,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +30,9 @@ class InfoTitle extends StatelessWidget {
                 color: Color(0xFF010035),
               ),
             ),
-            const SizedBox(height: 7,),
+            const SizedBox(
+              height: 7,
+            ),
             _rating(rating),
           ],
         ),
@@ -36,13 +44,13 @@ class InfoTitle extends StatelessWidget {
   Widget _rating(double rating) {
     return Row(
       children: [
-          Row(
-            children: [
-        for (var i = 0; i < rating.round(); i++)
-              SvgPicture.asset('assets/icons/details/star.svg'),
-              const SizedBox(width: 9),
-            ],
-          ),
+        Row(
+          children: [
+            for (var i = 0; i < rating.round(); i++)
+              SvgPicture.asset(starIconAsset),
+            const SizedBox(width: 9),
+          ],
+        ),
       ],
     );
   }
@@ -59,7 +67,7 @@ class InfoTitle extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: SvgPicture.asset(
-          isFavorites ? 'assets/icons/filled_heart.svg' : 'assets/icons/heart.svg',
+          isFavorites ? filledHeartIconAsset : heartIconAsset,
           color: Colors.white,
           height: 14,
           width: 14,

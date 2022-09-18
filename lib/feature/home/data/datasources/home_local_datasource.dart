@@ -4,8 +4,8 @@ import 'package:flutter_application_1/feature/home/data/models/home_data_model.d
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class HomeLocalDataSource {
-  Future<HomeDataModel> getHomeDataFromCache();
-  Future<void> homeDataToCache(HomeDataModel data);
+  Future<HomeDataModel> getHomeDataFromStorage();
+  Future<void> homeDataToStorage(HomeDataModel data);
 }
 
 class HomeLocalDataSourceImpl implements HomeLocalDataSource {
@@ -14,18 +14,18 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   HomeLocalDataSourceImpl(this.sharedPreferences);
 
   @override
-  Future<HomeDataModel> getHomeDataFromCache() {
+  Future<HomeDataModel> getHomeDataFromStorage() {
     final jsonHomeData = sharedPreferences.getString('CACHED_HOME_DATA');
 
     if (jsonHomeData != null && jsonHomeData.isNotEmpty) {
       return Future.value(HomeDataModel.fromJson(json.decode(jsonHomeData)));
     } else {
-      throw CacheException();
+      throw StorageException();
     }
   }
 
   @override
-  Future<void> homeDataToCache(HomeDataModel data) {
+  Future<void> homeDataToStorage(HomeDataModel data) {
     final String jsonHomeData = json.encode(data.toJson());
 
     sharedPreferences.setString('CACHED_HOME_DATA', jsonHomeData);
