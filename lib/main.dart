@@ -5,10 +5,11 @@ import 'package:flutter_application_1/common/app_colors.dart';
 import 'package:flutter_application_1/feature/cart/presentation/pages/cart.dart';
 import 'package:flutter_application_1/feature/details/presentation/pages/detail_page.dart';
 import 'package:flutter_application_1/service_locator.dart' as di;
+import 'package:flutter_gen/gen_l10n/app_localications.dart';
 
 import 'feature/home/presentation/pages/home_page.dart';
 
-bool _initialURILinkHandled = false;
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -22,7 +23,7 @@ void main() async {
 
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-  NotificationSettings settings = await messaging.requestPermission(
+  await messaging.requestPermission(
     alert: true,
     announcement: false,
     badge: true,
@@ -32,9 +33,10 @@ void main() async {
     sound: true,
   );
 
-  FirebaseMessaging.onMessageOpenedApp.listen((event) => print("Clicked"));
-
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  FirebaseMessaging.onMessageOpenedApp
+      .listen((event) => navigatorKey.currentState?.pushNamed('/cart'));
 
   runApp(const MyApp());
 }
@@ -46,16 +48,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => HomePage(),
-        '/home': (context) => HomePage(),
-        '/details': (context) => DetailsPage(),
-        '/cart': (context) => CartPage(),
+        '/': (context) => const HomePage(),
+        '/home': (context) => const HomePage(),
+        '/details': (context) => const DetailsPage(),
+        '/cart': (context) => const CartPage(),
       },
+      navigatorKey: navigatorKey,
       theme: ThemeData(
         fontFamily: 'Mark Pro',
         backgroundColor: AppColors.mainBackground,
         scaffoldBackgroundColor: AppColors.mainBackground,
       ),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 }

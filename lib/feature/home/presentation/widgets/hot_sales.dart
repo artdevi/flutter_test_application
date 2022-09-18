@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/app_colors.dart';
 import 'package:flutter_application_1/feature/details/presentation/pages/detail_page.dart';
 import 'package:flutter_application_1/feature/home/domain/entities/home_data_entity.dart';
+import 'package:flutter_gen/gen_l10n/app_localications.dart';
 
 class HotSalesWidget extends StatelessWidget {
   final List<HotSaleEntity> data;
@@ -16,18 +17,18 @@ class HotSalesWidget extends StatelessWidget {
           padding: const EdgeInsets.only(left: 17, right: 33),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
-                "Hot Sales",
-                style: TextStyle(
+                AppLocalizations.of(context)!.hotSales,
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
                   color: AppColors.primaryBlue,
                 ),
               ),
               Text(
-                "see more",
-                style: TextStyle(
+                AppLocalizations.of(context)!.seeMore,
+                style: const TextStyle(
                   fontSize: 15,
                   color: AppColors.primaryOrange,
                 ),
@@ -53,7 +54,7 @@ class HotSalesWidget extends StatelessWidget {
                         ),
                       );
                     },
-                    child: productCard(product))
+                    child: productCard(context, product))
             ],
             options: CarouselOptions(
               autoPlay: true,
@@ -67,7 +68,7 @@ class HotSalesWidget extends StatelessWidget {
     );
   }
 
-  Widget productCard(HotSaleEntity product) {
+  Widget productCard(BuildContext context, HotSaleEntity product) {
     return Container(
       width: 380,
       height: 180,
@@ -130,9 +131,9 @@ class HotSalesWidget extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 color: Colors.white,
               ),
-              child: const Text(
-                "Buy now!",
-                style: TextStyle(
+              child: Text(
+                AppLocalizations.of(context)!.buyNow,
+                style: const TextStyle(
                   color: AppColors.primaryBlue,
                   fontFamily: 'SF Pro Display',
                   fontSize: 12,
@@ -151,9 +152,9 @@ class HotSalesWidget extends StatelessWidget {
                 width: 27,
                 decoration: const BoxDecoration(
                     shape: BoxShape.circle, color: AppColors.primaryOrange),
-                child: const Text(
-                  "New",
-                  style: TextStyle(
+                child: Text(
+                  AppLocalizations.of(context)!.newProduct,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 9,
                     fontWeight: FontWeight.w700,

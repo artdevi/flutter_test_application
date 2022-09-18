@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:floor/floor.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -15,8 +16,8 @@ class HomeDataEntity {
 
 @entity
 @JsonSerializable()
-class HotSaleEntity {
-  @primaryKey
+class HotSaleEntity extends Equatable {
+  @PrimaryKey()
   final int id;
   @JsonKey(name: 'is_new')
   final bool? isNew;
@@ -35,12 +36,15 @@ class HotSaleEntity {
     required this.pictureURL,
     required this.isBuy,
   });
+
+  @override
+  List<Object?> get props => [id, title];
 }
 
 @entity
 @JsonSerializable()
-class BestSellerEntity {
-  @primaryKey
+class BestSellerEntity extends Equatable {
+  @PrimaryKey()
   final int id;
   @JsonKey(name: 'is_favorites')
   final bool isFavorites;
@@ -60,4 +64,7 @@ class BestSellerEntity {
     required this.discountPrice,
     required this.pictureURL,
   });
+
+  @override
+  List<Object?> get props => [id, title];
 }

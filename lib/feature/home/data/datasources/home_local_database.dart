@@ -1,9 +1,7 @@
 import 'package:flutter_application_1/core/error/exception.dart';
 import 'package:flutter_application_1/feature/home/data/datasources/home_database.dart';
 import 'package:flutter_application_1/feature/home/data/datasources/home_local_datasource.dart';
-import 'package:flutter_application_1/feature/home/data/models/best_seller_model.dart';
 import 'package:flutter_application_1/feature/home/data/models/home_data_model.dart';
-import 'package:flutter_application_1/feature/home/data/models/hot_sale_model.dart';
 import 'package:flutter_application_1/feature/home/domain/entities/home_data_entity.dart';
 
 class HomeLocalDatabase implements HomeLocalDataSource {
@@ -19,9 +17,10 @@ class HomeLocalDatabase implements HomeLocalDataSource {
     try {
       bestSellers = await database.bestSellerDao.getBestSellers();
       hotSales = await database.hotSaleDao.getHotSales();
-      return Future.value(HomeDataModel(
-          bestSellers: bestSellers as List<BestSellerModel>,
-          hotSales: hotSales as List<HotSaleModel>));
+      return HomeDataModel(
+        bestSellers: List.castFrom(bestSellers),
+        hotSales: List.castFrom(hotSales),
+      );
     } catch (e) {
       throw StorageException();
     }
@@ -29,13 +28,9 @@ class HomeLocalDatabase implements HomeLocalDataSource {
 
   @override
   Future<void> homeDataToStorage(HomeDataModel data) {
-    data.bestSellers.forEach((element) async {
-      database.bestSellerDao.insertBestSeller(element);
-    });
+    data.bestSellers.forEach(database.bestSellerDao.insertBestSeller);
 
-    data.hotSales.forEach((element) async {
-      database.hotSaleDao.insertHotSale(element);
-    });
+    data.hotSales.forEach(database.hotSaleDao.insertHotSale);
 
     return Future.value();
   }

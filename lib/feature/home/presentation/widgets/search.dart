@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/app_colors.dart';
+import 'package:flutter_application_1/config/utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Search extends StatelessWidget {
@@ -32,7 +33,7 @@ class Search extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         left: 24, right: 18, top: 9, bottom: 9),
                     child: SvgPicture.asset(
-                      'assets/icons/search/search.svg',
+                      searchIconSvg,
                       color: AppColors.primaryOrange,
                     ),
                   ),
@@ -62,7 +63,7 @@ class Search extends StatelessWidget {
               ],
             ),
             child: SvgPicture.asset(
-              'assets/icons/search/qr.svg',
+              qrCodeIconSvg,
               color: Colors.white,
             ),
           ),

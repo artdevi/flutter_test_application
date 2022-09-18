@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/app_colors.dart';
+import 'package:flutter_application_1/config/utils/constants.dart';
 // import 'package:flutter_application_1/feature/details/data/models/details_data.dart';
 import 'package:flutter_application_1/feature/details/domain/entities/details_data_entity.dart';
 import 'package:flutter_application_1/feature/details/presentation/widgets/color_selection.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_application_1/feature/details/presentation/widgets/capac
 import 'package:flutter_application_1/feature/details/presentation/widgets/info_tabs_selection.dart';
 import 'package:flutter_application_1/feature/details/presentation/widgets/info_title.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localications.dart';
 
 class ProductInfoBlock extends StatelessWidget {
   final DetailsDataEntity data;
@@ -38,8 +40,8 @@ class ProductInfoBlock extends StatelessWidget {
           const SizedBox(
             height: 29,
           ),
-          _selectColorAndCapacity(),
-          _addToCartButton(),
+          _selectColorAndCapacity(context),
+          _addToCartButton(context),
         ],
       ),
     );
@@ -50,7 +52,7 @@ class ProductInfoBlock extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(children: [
-          SvgPicture.asset('assets/icons/details/cpu.svg'),
+          SvgPicture.asset(cpuIconAsset),
           const SizedBox(height: 9),
           Text(
             data.cpu,
@@ -62,7 +64,7 @@ class ProductInfoBlock extends StatelessWidget {
           ),
         ]),
         Column(children: [
-          SvgPicture.asset('assets/icons/details/camera.svg'),
+          SvgPicture.asset(cameraIconAsset),
           const SizedBox(height: 9),
           Text(
             data.camera,
@@ -74,7 +76,7 @@ class ProductInfoBlock extends StatelessWidget {
           ),
         ]),
         Column(children: [
-          SvgPicture.asset('assets/icons/details/ram.svg'),
+          SvgPicture.asset(ramIconAsset),
           const SizedBox(height: 9),
           Text(
             data.ssd,
@@ -86,7 +88,7 @@ class ProductInfoBlock extends StatelessWidget {
           ),
         ]),
         Column(children: [
-          SvgPicture.asset('assets/icons/details/memory.svg'),
+          SvgPicture.asset(ssdIconAsset),
           const SizedBox(height: 9),
           Text(
             data.sd,
@@ -101,14 +103,14 @@ class ProductInfoBlock extends StatelessWidget {
     );
   }
 
-  Widget _selectColorAndCapacity() {
+  Widget _selectColorAndCapacity(BuildContext context) {
     return Column(
       children: [
         Row(
-          children: const [
+          children: [
             Text(
-              'Select color and capacity',
-              style: TextStyle(
+              AppLocalizations.of(context)!.selectColorAndCapacity,
+              style: const TextStyle(
                 color: Color(0xFF010035),
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
@@ -131,7 +133,7 @@ class ProductInfoBlock extends StatelessWidget {
     );
   }
 
-  Widget _addToCartButton() {
+  Widget _addToCartButton(BuildContext context) {
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -147,9 +149,9 @@ class ProductInfoBlock extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              'Add to Cart',
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)!.addToCart,
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.white,
                 fontWeight: FontWeight.w700,

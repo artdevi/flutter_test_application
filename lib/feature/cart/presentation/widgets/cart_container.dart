@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/app_colors.dart';
+import 'package:flutter_application_1/config/utils/constants.dart';
 import 'package:flutter_application_1/feature/cart/domain/entities/cart_data_entity.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localications.dart';
 
 class CartContainer extends StatefulWidget {
   final CartDataEntity data;
@@ -50,9 +52,9 @@ class _CartContainerState extends State<CartContainer> {
           color: AppColors.primaryOrange,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: const Text(
-          'Checkout',
-          style: TextStyle(
+        child: Text(
+          AppLocalizations.of(context)!.checkout,
+          style: const TextStyle(
             fontSize: 20,
             color: Colors.white,
             fontWeight: FontWeight.w700,
@@ -81,9 +83,9 @@ class _CartContainerState extends State<CartContainer> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Total',
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.total,
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.white,
                   fontWeight: FontWeight.w400,
@@ -105,9 +107,9 @@ class _CartContainerState extends State<CartContainer> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Delivery',
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context)!.delivery,
+                style: const TextStyle(
                   fontSize: 15,
                   color: Colors.white,
                   fontWeight: FontWeight.w400,
@@ -229,7 +231,7 @@ class _CartContainerState extends State<CartContainer> {
             ),
           ),
           SvgPicture.asset(
-            'assets/icons/trash_bin.svg',
+            trashBinIconAsset,
           ),
         ],
       ),

@@ -130,7 +130,7 @@ class _$BestSellerDao extends BestSellerDao {
 
   @override
   Future<List<BestSellerEntity>> getBestSellers() async {
-    return _queryAdapter.queryList('SELECT * FROM best_sellers',
+    return _queryAdapter.queryList('SELECT * FROM BestSellerEntity',
         mapper: (Map<String, Object?> row) => BestSellerEntity(
             id: row['id'] as int,
             isFavorites: (row['isFavorites'] as int) != 0,
@@ -142,7 +142,7 @@ class _$BestSellerDao extends BestSellerDao {
 
   @override
   Future<void> deleteBestSellers() async {
-    await _queryAdapter.queryNoReturn('DELETE FROM best_sellers');
+    await _queryAdapter.queryNoReturn('DELETE FROM BestSellerEntity');
   }
 
   @override
@@ -177,7 +177,7 @@ class _$HotSaleDao extends HotSaleDao {
 
   @override
   Future<List<HotSaleEntity>> getHotSales() async {
-    return _queryAdapter.queryList('SELECT * FROM hot_sales',
+    return _queryAdapter.queryList('SELECT * FROM HotSaleEntity',
         mapper: (Map<String, Object?> row) => HotSaleEntity(
             id: row['id'] as int,
             isNew: row['isNew'] == null ? null : (row['isNew'] as int) != 0,
@@ -189,7 +189,7 @@ class _$HotSaleDao extends HotSaleDao {
 
   @override
   Future<void> deleteHotSale() async {
-    await _queryAdapter.queryNoReturn('DELETE FROM hot_sales');
+    await _queryAdapter.queryNoReturn('DELETE FROM HotSaleEntity');
   }
 
   @override

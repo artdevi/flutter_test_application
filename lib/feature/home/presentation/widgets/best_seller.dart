@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/common/app_colors.dart';
+import 'package:flutter_application_1/config/utils/constants.dart';
 import 'package:flutter_application_1/feature/details/presentation/pages/detail_page.dart';
 import 'package:flutter_application_1/feature/home/domain/entities/home_data_entity.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localications.dart';
 
 class BestSellerWidget extends StatelessWidget {
   final List<BestSellerEntity> data;
@@ -16,18 +18,18 @@ class BestSellerWidget extends StatelessWidget {
           padding: const EdgeInsets.only(left: 17, right: 33),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
-                "Best Seller",
-                style: TextStyle(
+                AppLocalizations.of(context)!.bestSeller,
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
                   color: AppColors.primaryBlue,
                 ),
               ),
               Text(
-                "see more",
-                style: TextStyle(
+                AppLocalizations.of(context)!.seeMore,
+                style: const TextStyle(
                   fontSize: 15,
                   color: AppColors.primaryOrange,
                 ),
@@ -47,7 +49,7 @@ class BestSellerWidget extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 12,
                 crossAxisSpacing: 14,
-                childAspectRatio: 181 / 227,
+                childAspectRatio: 181 / 240,
               ),
               itemBuilder: (BuildContext context, index) {
                 return GestureDetector(
@@ -173,9 +175,7 @@ class BestSellerWidget extends StatelessWidget {
                 ],
               ),
               child: SvgPicture.asset(
-                isFavorites
-                    ? 'assets/icons/filled_heart.svg'
-                    : 'assets/icons/heart.svg',
+                isFavorites ? filledHeartIconAsset : heartIconAsset,
                 color: AppColors.primaryOrange,
               ),
             ),

@@ -10,6 +10,7 @@ import 'package:flutter_application_1/feature/common/loading_page.dart';
 import 'package:flutter_application_1/feature/common/unexpected_state_page.dart';
 import 'package:flutter_application_1/service_locator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localications.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -64,9 +65,9 @@ class _CartPageState extends State<_CartPage> {
               padding: const EdgeInsets.only(
                   top: 30, bottom: 49, left: 42, right: 42),
               alignment: Alignment.centerLeft,
-              child: const Text(
-                'My Cart',
-                style: TextStyle(
+              child: Text(
+                AppLocalizations.of(context)!.myCart,
+                style: const TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.w700,
                 ),

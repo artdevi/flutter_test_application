@@ -1,6 +1,6 @@
 import UIKit
 import Flutter
-import GoogleMaps
+import YandexMapsMobile
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
