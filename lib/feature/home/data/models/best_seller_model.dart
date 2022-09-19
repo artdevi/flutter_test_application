@@ -1,8 +1,10 @@
+import 'package:floor/floor.dart';
 import 'package:flutter_application_1/feature/home/domain/entities/home_data_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'best_seller_model.g.dart';
 
+@entity
 @JsonSerializable()
 class BestSellerModel extends BestSellerEntity {
   BestSellerModel({

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_application_1/core/data/database/database.dart';
 import 'package:flutter_application_1/core/platform/network_info.dart';
 import 'package:flutter_application_1/core/api/api_client.dart';
 import 'package:flutter_application_1/feature/cart/data/datasources/cart_local_datasource.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_application_1/feature/details/data/repositories/details_
 import 'package:flutter_application_1/feature/details/domain/repositories/details_data_repository.dart';
 import 'package:flutter_application_1/feature/details/domain/usecases/get_details_data.dart';
 import 'package:flutter_application_1/feature/details/presentation/bloc/details_bloc.dart';
-import 'package:flutter_application_1/feature/home/data/datasources/home_database.dart';
 import 'package:flutter_application_1/feature/home/data/datasources/home_local_database.dart';
 import 'package:flutter_application_1/feature/home/data/datasources/home_local_datasource.dart';
 import 'package:flutter_application_1/feature/home/data/datasources/home_remote_datasource.dart';
@@ -35,9 +35,9 @@ Future<void> init() async {
 
   // DB
   final database =
-      await $FloorHomeDatabase.databaseBuilder('flutter_app.db').build();
+      await $FloorAppDatabase.databaseBuilder('flutter_app.db').build();
 
-  sl.registerSingleton<HomeDatabase>(database);
+  sl.registerSingleton<AppDatabase>(database);
   // BLoC
   sl.registerFactory(() => HomeBloc(sl()));
   sl.registerFactory(() => DetailsBloc(sl()));
