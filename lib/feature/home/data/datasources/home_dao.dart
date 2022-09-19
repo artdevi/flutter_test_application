@@ -1,26 +1,27 @@
 import 'package:floor/floor.dart';
-import 'package:flutter_application_1/feature/home/domain/entities/home_data_entity.dart';
+import 'package:flutter_application_1/feature/home/data/models/best_seller_model.dart';
+import 'package:flutter_application_1/feature/home/data/models/hot_sale_model.dart';
 
 @dao
 abstract class BestSellerDao {
-  @Query('SELECT * FROM BestSellerEntity')
-  Future<List<BestSellerEntity>> getBestSellers();
+  @Query('SELECT * FROM BestSellerModel')
+  Future<List<BestSellerModel>> getBestSellers();
 
   @Insert(onConflict: OnConflictStrategy.replace)
-  Future<void> insertBestSeller(BestSellerEntity bestSeller);
+  Future<void> insertBestSeller(BestSellerModel bestSeller);
 
-  @Query("DELETE FROM BestSellerEntity")
+  @Query("DELETE FROM BestSellerModel")
   Future<void> deleteBestSellers();
 }
 
 @dao
 abstract class HotSaleDao {
-  @Query('SELECT * FROM HotSaleEntity')
-  Future<List<HotSaleEntity>> getHotSales();
+  @Query('SELECT * FROM HotSaleModel')
+  Future<List<HotSaleModel>> getHotSales();
 
   @Insert(onConflict: OnConflictStrategy.replace)
-  Future<void> insertHotSale(HotSaleEntity bestSeller);
+  Future<void> insertHotSale(HotSaleModel bestSeller);
 
-  @Query("DELETE FROM HotSaleEntity")
+  @Query("DELETE FROM HotSaleModel")
   Future<void> deleteHotSale();
 }

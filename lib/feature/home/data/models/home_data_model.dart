@@ -8,8 +8,8 @@ part 'home_data_model.g.dart';
 @JsonSerializable()
 class HomeDataModel extends HomeDataEntity {
   HomeDataModel({
-    required List<HotSaleEntity> hotSales,
-    required List<BestSellerEntity> bestSellers,
+    required List<HotSaleModel> hotSales,
+    required List<BestSellerModel> bestSellers,
   }) : super(hotSales: hotSales, bestSellers: bestSellers);
 
   factory HomeDataModel.fromJson(Map<String, dynamic> json) =>

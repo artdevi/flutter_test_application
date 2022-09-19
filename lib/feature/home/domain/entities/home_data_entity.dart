@@ -14,7 +14,6 @@ class HomeDataEntity {
   });
 }
 
-@entity
 @JsonSerializable()
 class HotSaleEntity extends Equatable {
   @PrimaryKey()
@@ -41,7 +40,6 @@ class HotSaleEntity extends Equatable {
   List<Object?> get props => [id, title];
 }
 
-@entity
 @JsonSerializable()
 class BestSellerEntity extends Equatable {
   @PrimaryKey()
