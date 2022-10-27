@@ -24,6 +24,7 @@ class HomeDataRepositoryImpl extends HomeDataRepository {
       try {
         final data = await homeRemoteDataSource.getHomeData();
         homeLocalDataSource.homeDataToStorage(data);
+
         return Right(data);
       } on ServerException {
         return Left(ServerFailure());

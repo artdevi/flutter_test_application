@@ -14,6 +14,7 @@ import 'package:flutter_application_1/feature/details/data/repositories/details_
 import 'package:flutter_application_1/feature/details/domain/repositories/details_data_repository.dart';
 import 'package:flutter_application_1/feature/details/domain/usecases/get_details_data.dart';
 import 'package:flutter_application_1/feature/details/presentation/bloc/details_bloc.dart';
+import 'package:flutter_application_1/feature/home/data/datasources/home_firabase_datasource.dart';
 import 'package:flutter_application_1/feature/home/data/datasources/home_local_database.dart';
 import 'package:flutter_application_1/feature/home/data/datasources/home_local_datasource.dart';
 import 'package:flutter_application_1/feature/home/data/datasources/home_remote_datasource.dart';
@@ -69,7 +70,7 @@ Future<void> init() async {
           ));
 
   sl.registerLazySingleton<HomeRemoteDataSource>(
-    () => HomeRemoteDataSourceImpl(client: sl()),
+    () => HomeFirestoreDataSource(),
   );
 
   sl.registerLazySingleton<DetailsRemoteDataSource>(
