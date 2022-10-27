@@ -7,7 +7,7 @@ part 'best_seller_model.g.dart';
 @entity
 @JsonSerializable()
 class BestSellerModel extends BestSellerEntity {
-  BestSellerModel({
+  const BestSellerModel({
     required super.id,
     required super.isFavorites,
     required super.title,
