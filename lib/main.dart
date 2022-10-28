@@ -5,6 +5,8 @@ import 'package:flutter_application_1/common/app_colors.dart';
 import 'package:flutter_application_1/feature/cart/presentation/pages/cart.dart';
 import 'package:flutter_application_1/feature/details/presentation/pages/detail_page.dart';
 import 'package:flutter_application_1/service_locator.dart' as di;
+import 'package:flutter_application_1/service_locator.dart';
+import 'package:flutter_application_1/services/analytics_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localications.dart';
 
 import 'feature/home/presentation/pages/home_page.dart';
@@ -54,6 +56,9 @@ class MyApp extends StatelessWidget {
         '/cart': (context) => const CartPage(),
       },
       navigatorKey: navigatorKey,
+      navigatorObservers: [
+        sl<AnalyticsService>().getAnalyticsObserver(),
+      ],
       theme: ThemeData(
         fontFamily: 'Mark Pro',
         backgroundColor: AppColors.mainBackground,

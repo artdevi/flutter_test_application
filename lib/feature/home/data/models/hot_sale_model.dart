@@ -7,7 +7,7 @@ part 'hot_sale_model.g.dart';
 @entity
 @JsonSerializable()
 class HotSaleModel extends HotSaleEntity {
-  HotSaleModel({
+  const HotSaleModel({
     required super.id,
     required super.isNew,
     required super.title,

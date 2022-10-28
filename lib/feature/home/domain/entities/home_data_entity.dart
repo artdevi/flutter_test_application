@@ -27,7 +27,7 @@ class HotSaleEntity extends Equatable {
   @JsonKey(name: 'is_buy')
   final bool isBuy;
 
-  HotSaleEntity({
+  const HotSaleEntity({
     required this.id,
     required this.isNew,
     required this.title,
@@ -54,7 +54,7 @@ class BestSellerEntity extends Equatable {
   @JsonKey(name: 'picture')
   final String pictureURL;
 
-  BestSellerEntity({
+  const BestSellerEntity({
     required this.id,
     required this.isFavorites,
     required this.title,
