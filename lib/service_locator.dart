@@ -22,6 +22,7 @@ import 'package:flutter_application_1/feature/home/data/repositories/home_data_r
 import 'package:flutter_application_1/feature/home/domain/repositories/home_data_repository.dart';
 import 'package:flutter_application_1/feature/home/domain/usecases/get_home_data.dart';
 import 'package:flutter_application_1/feature/home/presentation/bloc/home_bloc.dart';
+import 'package:flutter_application_1/services/analytics_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,6 +31,9 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   sl.registerLazySingleton(() => ApiClient(sl()));
+
+  // Analytics
+  sl.registerLazySingleton(() => AnalyticsService());
 
   // dio retrofit
   sl.registerLazySingleton<Dio>(() => Dio());
